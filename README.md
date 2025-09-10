@@ -29,14 +29,18 @@ O **Voz do Passageiro** é uma aplicação web desenvolvida para permitir que ci
 
 ## Como Rodar o Projeto
 
-Para executar o projeto em seu ambiente local (como XAMPP, WAMP ou MAMP), siga os passos abaixo:
+Para executar o projeto em seu ambiente local, siga os passos abaixo:
 
-1.  **Clone o Repositório:**
+1.  **Instalar o XAMPP:**
+    * O projeto utiliza PHP e MySQL. Você precisará de um servidor local como o XAMPP.
+    * Baixe e instale o XAMPP em seu computador através do site oficial: [https://www.apachefriends.org/pt_br/index.html](https://www.apachefriends.org/pt_br/index.html)
+
+2.  **Clone o Repositório:**
     ```bash
     git clone [https://www.youtube.com/watch?v=GRf6so_sois](https://www.youtube.com/watch?v=GRf6so_sois)
     ```
 
-2.  **Configurar o Banco de Dados:**
+3.  **Configurar o Banco de Dados:**
     * No phpMyAdmin, crie um banco de dados chamado `voz-do-passageiro`.
     * Importe a estrutura das tabelas usando o código SQL abaixo. Crie a tabela `reclamacoes`:
     ```sql
@@ -60,11 +64,11 @@ Para executar o projeto em seu ambiente local (como XAMPP, WAMP ou MAMP), siga o
     );
     ```
 
-3.  **Configurar o Servidor Local:**
+4.  **Configurar o Servidor Local:**
     * Mova a pasta do projeto clonado (`voz-do-passageiro`) para o diretório `htdocs` (no XAMPP) ou similar do seu servidor local.
     * Inicie o servidor Apache e o MySQL.
 
-4.  **Acessar a Aplicação:**
+5.  **Acessar a Aplicação:**
     * Abra o navegador e acesse a URL: `http://localhost/voz-do-passageiro/index.php`
 
 ---
