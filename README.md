@@ -41,28 +41,12 @@ Para executar o projeto em seu ambiente local, siga os passos abaixo:
     ```
 
 3.  **Configurar o Banco de Dados:**
-    * No phpMyAdmin, crie um banco de dados chamado `voz-do-passageiro`.
-    * Importe a estrutura das tabelas usando o código SQL abaixo. Crie a tabela `reclamacoes`:
-    ```sql
-    CREATE TABLE reclamacoes (
-        id INT(11) AUTO_INCREMENT PRIMARY KEY,
-        linha_onibus VARCHAR(20) NOT NULL,
-        tipo_reclamacao VARCHAR(50) NOT NULL,
-        descricao TEXT NOT NULL,
-        autor VARCHAR(255) DEFAULT 'Anônimo',
-        data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-    ```
-    * Em seguida, crie a tabela `usuarios`:
-    ```sql
-    CREATE TABLE usuarios (
-        id INT(11) AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        senha VARCHAR(255) NOT NULL,
-        criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-    ```
+    *   Inicie o MySQL através do painel do XAMPP.
+    *   Acesse o phpMyAdmin (normalmente em `http://localhost/phpmyadmin`).
+    *   Crie um novo banco de dados com o nome `voz-do-passageiro`.
+    *   Selecione o banco de dados recém-criado e vá para a aba "Importar".
+    *   Clique em "Escolher arquivo" e selecione o arquivo `voz-do-passageiro.sql` localizado na pasta `database` do projeto.
+    *   Clique em "Executar" para criar as tabelas e importar os dados.
 
 4.  **Configurar o Servidor Local:**
     * Mova a pasta do projeto clonado (`voz-do-passageiro`) para o diretório `htdocs` (no XAMPP) ou similar do seu servidor local.

@@ -78,6 +78,7 @@ body {
     padding: 8px 12px;
     border-radius: 5px;
     transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
 }
 
 .nav-button:hover {
@@ -339,9 +340,113 @@ button[type="submit"]:hover {
     transform: translateY(-1px);
 }
 
-@media (max-width: 600px) {
-    .nav-button-cadastro {
-        padding: 6px 10px;
-        font-size: 0.9em;
+/* Media Queries para Responsividade */
+
+/* Telas de tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    main {
+        max-width: 95%;
+    }
+
+    .footer-about, .footer-links, .footer-contact, .footer-social {
+        flex-basis: 48%;
+    }
+}
+
+/* Telas menores (celulares) */
+@media (max-width: 767px) {
+    body {
+        padding-bottom: 60px; /* Garante espaço para o rodapé fixo */
+    }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: center; /* Centraliza os itens */
+        padding: 10px;
+    }
+
+    .nav-center {
+        display: none; /* Oculta o título em telas de celular */
+    }
+
+    .nav-left, .nav-right {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap; /* Permite que os botões quebrem a linha */
+        justify-content: center;
+        gap: 10px; /* Espaçamento entre botões */
+    }
+    
+    .nav-left {
+        margin-bottom: 10px;
+    }
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 1.8rem; /* Reduz a fonte do título principal */
+    }
+    
+    .info-box-home h2 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Reduz a fonte dos subtítulos */
+    }
+
+    .rankings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ranking-container, .reclamacoes-container, .form-container {
+        padding: 20px; /* Reduz o padding interno */
+    }
+
+    .reclamacao-card {
+        padding: 12px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-about, .footer-links, .footer-contact, .footer-social {
+        flex-basis: 100%;
+        min-width: auto;
+        margin-bottom: 20px;
+    }
+
+    .footer-bottom {
+        padding: 15px 10px;
+    }
+}
+
+/* Ajustes finos para telas muito pequenas */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .nav-left, .nav-right {
+        flex-direction: column; /* Empilha os botões verticalmente */
+    }
+
+    .nav-button, .nav-button-cadastro, .theme-button {
+        width: 100%;
+        text-align: center;
     }
 }
