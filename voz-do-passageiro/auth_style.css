@@ -153,26 +153,11 @@ body {
 }
 
 /* Responsividade */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
     .auth-sidebar {
-        display: none; /* Oculta a barra lateral em tablets e celulares */
+        display: none;
     }
     .auth-main {
-        flex: 1; /* Ocupa toda a largura */
         padding: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .auth-container {
-        padding: 15px;
-    }
-
-    .auth-container h2 {
-        font-size: 1.6rem; /* Reduz o título em telas muito pequenas */
-    }
-
-    .form-group input, .auth-button {
-        padding: 14px; /* Aumenta a área de toque */
     }
 }

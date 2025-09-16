@@ -38,6 +38,7 @@ Para executar o projeto em seu ambiente local, siga os passos abaixo:
 2.  **Clone o Repositório:**
     ```bash
     git clone [https://www.youtube.com/watch?v=GRf6so_sois](https://www.youtube.com/watch?v=GRf6so_sois)
+    git clone <URL_DO_REPOSITORIO>
     ```
 
 3.  **Configurar o Banco de Dados:**

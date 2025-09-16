@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(API_GET_URL);
                 if (!response.ok) throw new Error('Falha na rede.');
                 const reclamacoes = await response.json();
+                
+                // Esta linha apaga o conteúdo atual para substituí-lo pelo novo
                 listaReclamacoes.innerHTML = ''; 
+                
                 if (reclamacoes.length === 0) {
                     listaReclamacoes.innerHTML = '<p class="no-data">Nenhuma reclamação registrada ainda.</p>';
                     return;
@@ -44,8 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Chama a função para carregar a lista inicial
-        carregarReclamacoes_func();
+        // CORREÇÃO: A chamada inicial da função foi removida daqui para evitar o conflito de renderização.
 
         // Adiciona o listener de envio do formulário
         form.addEventListener('submit', async (event) => {
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     formStatus.textContent = resultado.mensagem;
                     formStatus.className = 'status-sucesso';
                     form.reset();
+                    // A função agora só é chamada AQUI, após um envio bem-sucedido, para atualizar a lista.
                     await carregarReclamacoes_func(); 
                 } else {
                     throw new Error(resultado.mensagem || 'Ocorreu um erro.');
@@ -81,16 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         function escapeHTML_func(str) {
-            if (!str) return 'Anônimo'; 
+            if (typeof str !== 'string') return 'Anônimo'; 
             return str.replace(/[&<>'"]/g, 
                 tag => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[tag] || tag));
         }
     }
 
-
     // ==========================================================
     // LÓGICA DO SELETOR DE TEMA
-    // Roda em todas as páginas, desde que o botão exista
     // ==========================================================
     const applyTheme = (theme) => {
         htmlElement.setAttribute('data-theme', theme);
@@ -105,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Aplica o tema salvo em todas as páginas, independente de qualquer coisa
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
 });
