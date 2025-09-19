@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # APLICA AS REGRAS SOMENTE NA REQUISIÇÃO INICIAL
+    # Isso impede que a regra seja aplicada novamente após o primeiro redirecionamento.
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule ^$ public/ [L]
+
+    # SE A REQUISIÇÃO FOR PARA UM ARQUIVO OU PASTA QUE NÃO EXISTE...
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # ...REDIRECIONE PARA A PASTA PUBLIC
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

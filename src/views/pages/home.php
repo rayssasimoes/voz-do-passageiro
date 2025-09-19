@@ -1,70 +1,3 @@
-<?php
-session_start();
-
-// --- LÓGICA PHP ---
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'voz-do-passageiro');
-try {
-    $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8';
-    $options = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false, ];
-    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
-} catch (PDOException $e) { die("Erro fatal de conexão com o banco de dados: " . $e->getMessage()); }
-
-// --- LÓGICA DA API ---
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'get_reclamacoes') {
-        header('Content-Type: application/json');
-        $stmt = $pdo->query("SELECT linha_onibus, tipo_reclamacao, descricao, autor, DATE_FORMAT(data_hora, '%d/%m/%Y às %H:%i') as data_formatada FROM reclamacoes ORDER BY data_hora DESC LIMIT 10");
-        echo json_encode($stmt->fetchAll());
-        exit;
-    }
-    if ($_GET['action'] == 'post_reclamacao' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!isset($_SESSION['usuario_id'])) { http_response_code(403); echo json_encode(['sucesso' => false, 'mensagem' => 'Você precisa estar logado para enviar uma reclamação.']); exit; }
-        header('Content-Type: application/json');
-        $dados = json_decode(file_get_contents('php://input'), true);
-        $linha = $dados['linha_onibus'] ?? ''; $tipo = $dados['tipo_reclamacao'] ?? ''; $descricao = $dados['descricao'] ?? '';
-        $mostrar_nome = $dados['mostrar_nome'] ?? false;
-        $autor_reclamacao = 'Anônimo';
-        if ($mostrar_nome && isset($_SESSION['usuario_nome'])) { $autor_reclamacao = $_SESSION['usuario_nome']; }
-        if (empty($linha) || empty($tipo) || empty($descricao)) { http_response_code(400); echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios.']); exit; }
-        $sql = "INSERT INTO reclamacoes (linha_onibus, tipo_reclamacao, descricao, autor) VALUES (:linha, :tipo, :descricao, :autor)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([':linha' => $linha, ':tipo' => $tipo, ':descricao' => $descricao, ':autor' => $autor_reclamacao]);
-        echo json_encode(['sucesso' => true, 'mensagem' => 'Reclamação registrada com sucesso!']);
-        exit;
-    }
-}
-
-// --- LÓGICA PARA BUSCAR DADOS PARA A PÁGINA ---
-// Reclamações recentes (para todos)
-$stmt_recentes = $pdo->query("SELECT linha_onibus, tipo_reclamacao, descricao, autor, DATE_FORMAT(data_hora, '%d/%m/%Y às %H:%i') as data_formatada FROM reclamacoes ORDER BY data_hora DESC LIMIT 5");
-$reclamacoes_recentes = $stmt_recentes->fetchAll();
-
-// LÓGICA DE RANKING CORRIGIDA
-// 1. Pega as 5 piores linhas
-$stmt_piores = $pdo->query("SELECT linha_onibus, COUNT(*) as total_reclamacoes FROM reclamacoes GROUP BY linha_onibus ORDER BY total_reclamacoes DESC LIMIT 5");
-$piores_linhas = $stmt_piores->fetchAll();
-
-// 2. Cria uma lista com o nome das piores linhas para exclusão
-$piores_linhas_nomes = [];
-foreach ($piores_linhas as $linha) {
-    $piores_linhas_nomes[] = $linha['linha_onibus'];
-}
-$placeholders = implode(',', array_fill(0, count($piores_linhas_nomes), '?'));
-
-// 3. Pega as 5 melhores, EXCLUINDO as que estão na lista de piores
-if(!empty($piores_linhas_nomes)) {
-    $stmt_melhores = $pdo->prepare("SELECT linha_onibus, COUNT(*) as total_reclamacoes FROM reclamacoes WHERE linha_onibus NOT IN ($placeholders) GROUP BY linha_onibus HAVING total_reclamacoes > 0 ORDER BY total_reclamacoes ASC LIMIT 5");
-    $stmt_melhores->execute($piores_linhas_nomes);
-} else {
-    // Caso não haja piores linhas, pega as melhores normalmente
-    $stmt_melhores = $pdo->query("SELECT linha_onibus, COUNT(*) as total_reclamacoes FROM reclamacoes GROUP BY linha_onibus HAVING total_reclamacoes > 0 ORDER BY total_reclamacoes ASC LIMIT 5");
-}
-$melhores_linhas = $stmt_melhores->fetchAll();
-
-?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="light">
 <head>
@@ -74,7 +7,7 @@ $melhores_linhas = $stmt_melhores->fetchAll();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/voz-do-passageiro/public/assets/css/style.css">
 </head>
 <body>
     <nav class="nav-menu">
