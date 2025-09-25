@@ -1,0 +1,307 @@
+/* --- Variáveis CSS Globais --- */
+:root {
+    --primary-color: #7F00FF; /* Roxo principal */
+    --primary-light: #9B30FF;
+    --primary-dark: #6a00d2;
+    --secondary-color: #FFC107; /* Amarelo/Dourado */
+    
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --text-muted: #666;
+
+    --background-light: #f8f9fa;
+    --bg-color: #e9ecef; /* Um cinza claro para fundos */
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --input-border-focus: var(--primary-color);
+
+    --border-color: #dee2e6;
+
+    --button-bg-primary: var(--primary-color);
+    --button-text-primary: #ffffff;
+    /* --button-bg-secondary: #6c757d; /* Exemplo de um botão secundário */
+    --button-text-secondary: #ffffff;
+
+    --font-family-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-base: 1rem;
+    --line-height-base: 1.5;
+}
+
+/* --- Estilos Gerais --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative; /* Contexto para elementos posicionados absolutamente */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Botões (gerais) */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px; /* Bordas levemente arredondadas */
+    border: none;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves para cor, fundo e borda */
+    white-space: nowrap; /* Impede que o texto do botão quebre */
+    font-family: var(--font-family-base); /* Garante a fonte moderna e legível */
+}
+
+/* O estilo de .btn-primary continua o mesmo, pois é para botões "principais" */
+.btn-primary {
+    background-color: var(--button-bg-primary);
+    color: var(--button-text-primary);
+    border: 1px solid var(--primary-color); /* Adicionei uma borda para consistência visual */
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark); /* Altera a borda no hover também */
+}
+
+/* --- NOVO ESTILO PARA O BOTÃO SECUNDÁRIO/SAIR --- */
+.btn-secondary {
+    background-color: transparent; /* Fundo transparente */
+    color: var(--text-dark); /* Texto preto por padrão */
+    border: 2px solid var(--text-dark); /* Contorno preto */
+    box-shadow: none; /* Remove a sombra padrão se houver */
+}
+
+/* Modificação aqui: Aumentando a especificidade */
+.main-nav .btn-secondary:hover { /* Agora a regra é mais específica para o botão no nav */
+    background-color: var(--primary-color); /* Fundo com a cor sugerida */
+    color: var(--button-text-primary); /* Texto branco */
+    border-color: var(--primary-color); /* Contorno da cor sugerida */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave no hover para destaque */
+    text-decoration: none; /* Remove sublinhado no hover */;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color); /* Fundo com a cor sugerida */
+    color: var(--button-text-primary); /* Texto branco */
+    border-color: var(--primary-color); /* Contorno da cor sugerida */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave no hover para destaque */
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    padding: 0;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* --- Estilos para Listagem de Reclamações (home_view) --- */
+.complaint-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.complaint-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.complaint-card:hover {
+    transform: translateY(-5px);
+}
+
+.complaint-card h2 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.complaint-card h2 a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.complaint-card h2 a:hover {
+    text-decoration: underline;
+}
+
+.complaint-card .complaint-meta {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.complaint-card p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: var(--text-dark);
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .header-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 15px;
+    }
+
+    .header-content .logo {
+        grid-column: 1;
+        order: 1;
+    }
+
+    .nav-right {
+        grid-column: 1;
+        justify-self: center;
+        width: 100%;
+        order: 2;
+    }
+
+    .nav-left {
+        grid-column: 1;
+        justify-self: center;
+        width: 100%;
+        order: 3;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-links {
+        margin-top: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page-title {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    .complaint-list {
+        grid-template-columns: 1fr;
+    }
+} /* Fechamento do media query de 768px */
+
+/* --- Estilos para Modal de Confirmação --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro levemente transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que a modal fique acima de todo o conteúdo */
+    visibility: hidden; /* Escondida por padrão */
+    opacity: 0; /* Começa invisível para o fade-in */
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    visibility: visible; /* Visível quando a classe active é adicionada */
+    opacity: 1; /* Fade-in */
+}
+
+.modal-box {
+    background-color: var(--card-bg); /* Fundo branco do card */
+    padding: 30px;
+    border-radius: 15px; /* Cantos arredondados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra suave e destacada */
+    text-align: center;
+    max-width: 400px; /* Largura máxima da caixa */
+    width: 90%; /* Ocupa 90% da largura em telas menores */
+    transform: scale(0.9); /* Começa menor para o efeito de zoom */
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1); /* Zoom para o tamanho normal ao ativar */
+}
+
+.modal-box p {
+    font-size: 1.3em; /* Tamanho da fonte para a pergunta */
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre os botões */
+}
+
+/* Os botões dentro da modal já usarão os estilos .btn, .btn-primary e .btn-secondary */
+/* Podemos ajustar o hover aqui se quisermos um efeito diferente na modal */
+.modal-actions .btn {
+    min-width: 120px; /* Largura mínima para os botões */
+}
+
+/* --- Ajustes na Responsividade para a Modal --- */
+@media (max-width: 500px) {
+    .modal-box {
+        padding: 20px;
+    }
+    .modal-box p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+    .modal-actions {
+        flex-direction: column; /* Botões empilhados em telas muito pequenas */
+        gap: 10px;
+    }
+    .modal-actions .btn {
+        width: 100%; /* Ocupam a largura total */
+    }
+}

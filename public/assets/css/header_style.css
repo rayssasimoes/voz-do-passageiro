@@ -1,0 +1,109 @@
+/* --- Layout Principal --- */
+.main-header {
+    background-color: var(--card-bg);
+    padding: 25px 0; /* Aumentado para dar mais espaço vertical */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: relative; /* Adicionado para o contexto do menu mobile */
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Coluna esquerda, logo (auto), coluna direita */
+    align-items: center;
+    gap: 20px;
+}
+
+.header-content .logo {
+    grid-column: 2 / 3; /* Posiciona o logo na coluna central */
+    justify-self: center; /* Centraliza o logo horizontalmente na sua célula */
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.main-nav {
+    grid-column: 3 / 4; /* Posiciona a navegação na coluna da direita */
+    justify-self: end; /* Alinha a navegação à direita */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.main-nav a {
+    color: var(--text-dark);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.hamburger {
+    display: none; /* Escondido por padrão */
+    grid-column: 3 / 4; /* Posiciona o hamburger na coluna da direita */
+    justify-self: end; /* Alinha à direita */
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001; /* Garante que fique acima do menu */
+}
+
+.main-content-area {
+    flex-grow: 1;
+    padding: 30px 0;
+    background-color: var(--bg-color);
+}
+
+.page-title {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* --- Media Queries para Responsividade --- */
+
+@media (max-width: 768px) {
+    .header-content .logo {
+        font-size: 1.5em; /* Reduz o logo em telas médias */
+    }
+
+    .main-nav {
+        display: none; /* Esconde a navegação normal */
+        position: absolute;
+        top: 100%; /* Posiciona o menu dropdown abaixo do header */
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .main-nav.active {
+        display: block; /* Mostra o menu quando ativo */
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1.5rem; /* Aumentado para mais espaço */
+        padding: 1.5rem 0;
+        align-items: center;
+    }
+
+    .hamburger {
+        display: block; /* Mostra o botão hamburger */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content .logo {
+        font-size: 1.3em; /* Reduz ainda mais o logo em telas pequenas */
+    }
+}

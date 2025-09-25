@@ -1,0 +1,331 @@
+/* Estilos específicos para páginas de Autenticação (Login e Cadastro) */
+
+/* Reset do margin e overflow para o body APENAS na página de autenticação */
+body.auth-body {
+    margin: 0;
+    overflow: hidden; /* Mantém o body sem scroll vertical no desktop */
+    overflow-x: hidden; /* Previne o scroll horizontal em todas as resoluções */
+    background-color: var(--background-light);
+}
+
+/* Contêiner principal da página de autenticação (Two-Column Layout) */
+.auth-page-container {
+    display: flex;
+    min-height: 100vh; /* Garante que o container geral ocupe a altura total da viewport */
+    width: 100%;
+    /* Removido align-items: stretch para que os painéis não se forcem a ter a mesma altura baseada no conteúdo */
+}
+
+/* Painel Esquerdo (Branding/Info) */
+.auth-left-panel {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: var(--text-light);
+    text-align: center;
+    min-height: 100vh; /* Garante que o painel esquerdo sempre ocupe a altura total da viewport */
+}
+
+.auth-left-panel .branding {
+    max-width: 400px;
+}
+
+.auth-left-panel h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.auth-left-panel p {
+    font-size: 1.3em;
+    line-height: 1.4;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Painel Direito (Contêiner de Autenticação) */
+.auth-right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centraliza o card horizontalmente */
+    align-items: center;   /* Centraliza o card verticalmente */
+    background-color: var(--bg-color);
+    padding: 30px; /* Um padding um pouco maior para o painel em si */
+    min-height: 100vh; /* Garante que o painel direito sempre ocupe a altura total da viewport */
+    overflow-y: auto; /* IMPORTANTE: Adiciona rolagem se o conteúdo do card for maior que a tela */
+}
+
+/* Cartão (card) de autenticação dentro do painel direito */
+.auth-card {
+    background-color: var(--card-bg);
+    padding: 35px 45px; /* Ajuste o padding do card para o que te agrada mais, um pouco mais espaçoso */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra ajustada, um pouco mais visível */
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--border-color);
+    /* Estas propriedades já estavam ok para centralizar o conteúdo dentro do card */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */ /* Removido para que o conteúdo não se estique dentro do card */
+    max-height: calc(100vh - 60px); /* Garante que o card não seja maior que a viewport - padding do right-panel (30px * 2) */
+    overflow-y: auto; /* Adiciona rolagem interna ao card se ele for muito alto */
+}
+
+.auth-card h2 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Abas (Sign In / Join) */
+.auth-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+    margin: 0 10px;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-button:hover:not(.active) {
+    color: var(--primary-light);
+}
+
+/* Conteúdo do formulário (Sign In / Join) */
+.auth-form-content {
+    display: none;
+}
+
+.auth-form-content.active {
+    display: block;
+}
+
+/* Grupos de formulário */
+.form-group {
+    margin-bottom: 20px; /* Voltei ao valor original para mais espaçamento */
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--input-border-focus);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(127, 0, 255, 0.1);
+}
+
+/* Wrapper para input de senha com ícone */
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper input {
+    padding-right: 40px;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-size: 1.1em;
+}
+
+/* Checkbox para termos e condições */
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: -10px; /* Voltei ao valor original */
+    margin-bottom: 20px; /* Voltei ao valor original */
+    font-size: 0.9em;
+}
+
+.form-group-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.form-group-checkbox label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.form-group-checkbox a {
+    font-weight: 500;
+}
+
+/* Botões */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px 25px; /* Voltei ao padding original */
+    border-radius: 10px;
+    border: none;
+    background-color: var(--button-bg-primary);
+    color: var(--button-text-primary);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 25px; /* Voltei ao valor original */
+    box-shadow: 0 4px 15px rgba(127, 0, 255, 0.2);
+}
+
+.btn:hover {
+    background-color: #6a00d2;
+    box-shadow: 0 6px 20px rgba(127, 0, 255, 0.3);
+}
+
+/* Layout de dois inputs lado a lado (ex: Nome, Sobrenome) - Mantido para flexibilidade futura */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* --- Estilos para Alertas de Erro/Sucesso --- */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.alert ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    body.auth-body {
+        overflow: auto; /* REATIVA A ROLAGEM EM TELAS MENORES */
+    }
+
+    .auth-page-container {
+        flex-direction: column;
+    }
+
+    .auth-left-panel,
+    .auth-right-panel {
+        flex: none; /* Remove o flex: 1 para que os painéis tenham altura natural */
+        width: 100%;
+        min-height: auto;
+        padding: 40px 25px;
+    }
+
+    .auth-left-panel {
+        min-height: 200px; /* Uma altura mínima para o painel de branding */
+    }
+
+    .auth-right-panel {
+        overflow-y: visible; /* Permite que a página role normalmente */
+    }
+
+    .auth-card {
+        padding: 25px 30px;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .auth-left-panel h1 {
+        font-size: 2.8em;
+    }
+
+    .auth-left-panel p {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-left-panel {
+        min-height: auto;
+        padding: 30px 20px;
+    }
+
+    .auth-left-panel h1 {
+        font-size: 2.2em;
+    }
+
+    .auth-left-panel p {
+        font-size: 1em;
+    }
+
+    .auth-card {
+        padding: 20px 15px;
+    }
+
+    .auth-card h2 {
+        font-size: 1.8em;
+    }
+
+    .tab-button {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+}

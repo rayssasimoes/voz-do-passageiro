@@ -1,0 +1,170 @@
+/* --- Botão Voltar --- */
+.btn-voltar {
+    display: inline-flex; /* Visível em todas as telas */
+    position: absolute;
+    top: 0;
+    left: -20px; /* Levemente para fora do container principal */
+    width: 44px;
+    height: 44px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-voltar:hover {
+    background-color: #e0e0e0;
+}
+
+.arrow-left {
+    border: solid var(--text-dark);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(135deg);
+}
+
+/* --- Container Principal da Página --- */
+.reclamacoes-header {
+    text-align: center;
+    margin-bottom: 2rem; 
+    /* padding-top removido para corrigir espaçamento */
+}
+
+.nova-reclamacao-container {
+    display: flex; /* Centraliza o botão */
+    justify-content: center; /* Centraliza o botão */
+    margin-bottom: 1.5rem;
+    padding-top: 1rem; /* Adiciona espaço acima do botão */
+}
+
+.nova-reclamacao-container .btn-primary {
+    padding: 1rem 2rem; /* Mais padding horizontal para destaque */
+    border-radius: 50px; /* Bordas bem arredondadas */
+    box-shadow: 0 4px 15px rgba(127, 0, 255, 0.2); /* Sombra suave com a cor primária */
+    font-size: 1.2em; /* Aumenta o tamanho da fonte */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; /* Animação suave */
+}
+
+/* Animação ao passar o mouse */
+.nova-reclamacao-container .btn-primary:hover,
+.form-container .btn-primary:hover {
+    transform: translateY(-3px); /* Move o botão um pouco para cima */
+    box-shadow: 0 7px 20px rgba(127, 0, 255, 0.3); /* Aumenta a sombra para dar destaque */
+}
+.btn-primary:hover {
+    text-decoration: none; /* Garante que não haja sublinhado no hover */
+}
+
+/* --- Estilos do Formulário de Nova Reclamação --- */
+.form-container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(127, 0, 255, 0.1);
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-container .form-actions {
+    display: flex;
+    justify-content: center; /* Centraliza o botão de enviar */
+}
+
+.form-container .btn-primary {
+    width: auto; /* Largura automática */
+    padding: 0.8rem 1.5rem; /* Padding ajustado para um botão menor */
+    font-size: 1.1em;
+    border-radius: 50px; /* Bordas bem arredondadas */
+    box-shadow: 0 4px 15px rgba(127, 0, 255, 0.2); /* Sombra suave */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; /* Animação suave */
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Histórico de Reclamações --- */
+#historico-reclamacoes h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#reclamacoes-list .reclamacao-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+}
+
+#reclamacoes-list .reclamacao-card h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+#reclamacoes-list .reclamacao-card small {
+    color: var(--text-muted);
+    margin-top: 1rem;
+}
+
+.btn-apagar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end; /* Alinha o botão à direita do card */
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-apagar:hover {
+    background-color: #c82333;
+}

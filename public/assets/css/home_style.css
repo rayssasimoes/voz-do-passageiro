@@ -1,0 +1,270 @@
+/* ===== UX MODERNO PARA HOME ===== */
+
+/* --- Hero Section --- */
+.info-box-home {
+    background: linear-gradient(135deg, #7F00FF 0%, #9B30FF 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(127, 0, 255, 0.2);
+}
+
+.info-box-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-box-content p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* --- Formulário --- */
+.form-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(127, 0, 255, 0.1);
+}
+
+.form-container h2 {
+    color: #7F00FF;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #7F00FF;
+    box-shadow: 0 0 0 3px rgba(127, 0, 255, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.form-group-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #7F00FF;
+}
+
+.btn-primary {
+    background: #7F00FF;
+    color: white;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #6a00d2;
+    transform: translateY(-2px);
+}
+
+/* --- Reclamações Recentes --- */
+.reclamacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.reclamacao-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid #7F00FF;
+    transition: transform 0.3s ease;
+}
+
+.reclamacao-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.reclamacao-card h4 {
+    color: #7F00FF;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.tipo-reclamacao {
+    background: #7F00FF;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.descricao {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.reclamacao-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* --- Rankings --- */
+.rankings-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.ranking-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.ranking-card h3 {
+    color: #7F00FF;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.ranking-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ranking-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.ranking-list li:hover {
+    transform: translateX(5px);
+}
+
+.linha-nome {
+    font-weight: 600;
+    color: #333;
+}
+
+.linha-count {
+    background: #7F00FF;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.sem-dados {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .info-box-home {
+        padding: 3rem 1rem;
+    }
+    
+    .info-box-content h2 {
+        font-size: 2rem;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .reclamacoes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rankings-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 387px) {
+    .info-box-home {
+        padding: 2rem 1rem;
+    }
+
+    .info-box-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .info-box-content p {
+        font-size: 1.1rem;
+    }
+
+    .reclamacoes-grid {
+        gap: 1rem;
+    }
+
+    .reclamacao-card {
+        padding: 1rem;
+    }
+
+    .ranking-card {
+        padding: 1.5rem;
+    }
+}
